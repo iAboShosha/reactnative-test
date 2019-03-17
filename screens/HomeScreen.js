@@ -20,16 +20,18 @@ class HomeScreen extends React.Component {
         this.state = {
             refreshing: false
         };
+        this.props.onGetPhysicalTraining();
     }
 
-    openProductDetails = (product) => {
-        this.props.navigation.navigate("PhysicalTraining", {product: product});
+    openPhysicalTrainingDetails = (physicalTraining) => {
+        this.props.navigation.navigate("PhysicalTraining", {physicalTraining: physicalTraining});
     };
 
     _renderItem = ({item, index}, parallaxProps) => {
+        console.log('ssssss22222222')
         return (
             <Card
-                openProductItem={() => this.openProductDetails(item)}
+                openPhysicalTrainingItem={() => this.openPhysicalTrainingDetails(item)}
                 data={item}
                 even={(index + 1) % 2 === 0}
                 parallax={true}
@@ -74,7 +76,7 @@ class HomeScreen extends React.Component {
                         />
                     }
                     style={styles.listContainer}
-                    data={this.props.foods}
+                    data={this.props.physicalTrainings}
                     extraData={this.state}
                     renderItem={this._renderItem}
                     keyExtractor={(x, i) => i.toString()}

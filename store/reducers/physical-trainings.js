@@ -1,4 +1,4 @@
-import {FOODS_LIMIT_LIST, INCREMENT_PAGE, RESET_PAGE, PAGE_CHANGED, PHYSICAL_LIMIT_LIST} from "../actions/actionTypes";
+import {INCREMENT_PAGE_PHYSICAL, RESET_PAGE_PHYSICAL, PAGE_CHANGED_PHYSICAL, PHYSICAL_LIMIT_LIST} from "../actions/actionTypes";
 
 const initialState = {
     physicalTrainings: [],
@@ -18,17 +18,17 @@ function reducer(state = initialState, action) {
                 ...state,
                 physicalTrainings: state.page === 0 ? action.physicalTrainings : state.physicalTrainings
             };
-        case INCREMENT_PAGE:
+        case INCREMENT_PAGE_PHYSICAL:
             return {
                 ...state,
                 page: state.page + 1
             };
-        case RESET_PAGE:
+        case RESET_PAGE_PHYSICAL:
             return {
                 ...state,
                 page: 0
             };
-        case PAGE_CHANGED :
+        case PAGE_CHANGED_PHYSICAL :
             return {
                 ...state,
                 isPageChanged: action.isPageChanged

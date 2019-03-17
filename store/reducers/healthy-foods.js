@@ -9,6 +9,7 @@ const initialState = {
 function reducer(state = initialState, action) {
     switch (action.type) {
         case FOODS_LIMIT_LIST:
+            console.log('state.pagestate.pagestate.page ==> ', state.page)
             if (state.page !== 0) {
                 action.foods.forEach((item) => {
                     state.foods.push(item)

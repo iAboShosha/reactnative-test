@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Image,
     ScrollView,
     StyleSheet,
     TouchableOpacity,
@@ -12,17 +13,15 @@ import {Entypo} from "@expo/vector-icons";
 import {connect} from "react-redux";
 import {cloneDeep} from 'lodash'
 import {font} from "../config";
+import {Text} from "react-native-elements";
 
 class PhysicalTrainingScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({
-        headerTitle: navigation.state.params.physicalTraining.name,
+        headerTitle: navigation.state.params.physicalTraining.user.name,
         headerLeft: <TouchableOpacity onPress={() => {
             navigation.goBack(null)
         }}>
             <Entypo name="chevron-thin-left" style={{paddingLeft: 10}} size={32} color='#000'/></TouchableOpacity>,
-        headerRight: <View style={{flexDirection: 'row'}}>
-            <NotificationBell navigation={navigation}/>
-        </View>,
         headerTitleStyle: {width: '100%', textAlign: 'center', alignSelf: 'center', fontWeight: 'normal'}
     });
 
@@ -30,15 +29,7 @@ class PhysicalTrainingScreen extends React.Component {
         super(props);
         this.state = {
             refreshing: false,
-            isModalVisible: false,
-            isModalCommentsVisible: false,
-            quantity: 1,
-            sizes: [],
-            colors: [],
-            size: this.props.navigation.state.params.physicalTraining.sizes[0].size,
-            product: this.props.navigation.state.params.physicalTraining,
-            color: this.props.navigation.state.params.physicalTraining.color,
-            likes: this.props.likes ? this.props.likes : 0
+            physicalTraining: this.props.navigation.state.params.physicalTraining,
         };
     }
 
@@ -46,7 +37,13 @@ class PhysicalTrainingScreen extends React.Component {
 
         return (
             <ScrollView style={styles.container}>
-
+                <Image
+                    resizeMode={'contain'}
+                    source={{uri: this.state.physicalTraining.urls.full}}
+                />
+                <Text>{this.state.physicalTraining.user.username}</Text>
+                <Text>{this.state.physicalTraining.user.portfolio_url}</Text>
+                <Text>{this.state.physicalTraining.user.bio}</Text>
             </ScrollView>
         );
     }

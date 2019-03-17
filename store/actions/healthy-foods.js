@@ -3,6 +3,7 @@ import {FOODS_LIMIT_LIST, INCREMENT_PAGE, PAGE_CHANGED, RESET_PAGE} from "./acti
 
 export const getHealthyFoods = () => {
     return (dispatch, getState) => {
+        console.log('sssssssssssssss')
         dispatch(uiStartLoading());
         dispatch(authGetToken());
         return fetch(

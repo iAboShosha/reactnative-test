@@ -1,5 +1,12 @@
 import {authGetToken, authLogout, uiStartLoading, uiStopLoading} from "./index";
-import {PHYSICAL_LIMIT_LIST, INCREMENT_PAGE, PAGE_CHANGED, RESET_PAGE} from "./actionTypes";
+import {
+    PHYSICAL_LIMIT_LIST,
+    INCREMENT_PAGE,
+    PAGE_CHANGED,
+    RESET_PAGE,
+    PAGE_CHANGED_PHYSICAL,
+    INCREMENT_PAGE_PHYSICAL, RESET_PAGE_PHYSICAL
+} from "./actionTypes";
 
 export const getPhysicalTrainings = () => {
     return (dispatch, getState) => {
@@ -52,17 +59,17 @@ export const updatePhysicalTrainingsList = physicalTrainings => {
 
 export const pageChanged =(isChanged) =>{
     return {
-        type: PAGE_CHANGED,
+        type: PAGE_CHANGED_PHYSICAL,
         isPageChanged : isChanged
     }
 };
 export const incrementPage = () => {
     return {
-        type: INCREMENT_PAGE,
+        type: INCREMENT_PAGE_PHYSICAL,
     }
 };
 export const resetPage = () =>{
     return {
-        type: RESET_PAGE
+        type: RESET_PAGE_PHYSICAL
     }
 };

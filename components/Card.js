@@ -4,18 +4,19 @@ import {connect} from "react-redux";
 
 class Card extends React.Component {
     render() {
+        console.log('this.props.data ==> ', this.props.data)
         return (
-            <TouchableOpacity onPress={this.props.openProductItem} style={styles.container}>
+            <TouchableOpacity onPress={this.props.openPhysicalTrainingItem} style={styles.container}>
                 <Image
                     resizeMode={'contain'}
                     style={styles.imageStyle}
-                    source={{uri: this.props.data.images[0]}}
+                    source={{uri: this.props.data.urls.full}}
                 />
                 <View style={{alignItems: 'center'}}>
-                    <Text style={styles.brand}> {this.props.data.name}  </Text>
+                    <Text style={styles.brand}> {this.props.data.user.name}  </Text>
                     <View style={{flexDirection: 'row'}}>
-                        <Text style={styles.price}> $ {this.props.data.price}  </Text>
-                        <Text style={styles.discount}> $ {this.props.data.discount}  </Text>
+                        <Text style={styles.price}> $ {this.props.data.user.twitter_username}  </Text>
+                        <Text style={styles.discount}> $ {this.props.data.user.instagram_username}  </Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -27,8 +28,7 @@ class Card extends React.Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        width: 150,
-        height: 210,
+        width: '100%',
         marginBottom: 5,
         //marginHorizontal: 5,
         paddingHorizontal: 12,
