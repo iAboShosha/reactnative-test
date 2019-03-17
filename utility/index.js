@@ -1,0 +1,1 @@
+export {isIphoneX} from './utility'

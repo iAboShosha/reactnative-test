@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "physicaltraining",
+    "description": "A very interesting project.",
+    "slug": "physicaltraining",
+    "privacy": "public",
+    "sdkVersion": "28.0.0",
+   /* "facebookScheme": "280848512550556",
+    "FacebookAppID":"280848512550556",
+    "facebookDisplayName": "fittingroom",*/
+    "platforms": ["ios", "android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
