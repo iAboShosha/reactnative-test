@@ -1,7 +1,9 @@
 import {authGetToken, authLogout, uiStopLoading} from "./index";
 import {
     LANGUAGES,
+    SET_LANGUAGE
 } from "./actionTypes";
+import {AsyncStorage} from "react-native";
 
 export const getLanguages = () => {
     return (dispatch) => {
@@ -16,11 +18,11 @@ export const getLanguages = () => {
                         resolve([
                             {
                                 "name": "Arabic",
-                                "code": "ar-EG"
+                                "code": "ar"
                             },
                             {
                                 "name": "English",
-                                "code": "en-US"
+                                "code": "en"
                             }
                         ])
                     } else {
@@ -59,9 +61,31 @@ export const getLanguages = () => {
     };
 };
 
+export const saveLanguage = (language) => {
+    return (dispatch) => {
+        AsyncStorage.setItem("ap:language", language);
+        dispatch(setCurrentLanguage(language));
+    }
+};
+
+export const loadDefaultLanguage = () => {
+    return (dispatch) => {
+        return AsyncStorage.getItem("ap:language").then((language) => {
+            dispatch(setCurrentLanguage(language));
+        });
+    }
+};
+
 export const getAllLanguages = languages => {
     return {
         type: LANGUAGES,
         languages: languages
+    }
+};
+
+export const setCurrentLanguage = language => {
+    return {
+        type: SET_LANGUAGE,
+        language: language
     }
 };

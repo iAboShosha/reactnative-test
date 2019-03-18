@@ -17,7 +17,7 @@ import {updateUser, authLogout, changePassword} from "../store/actions";
 import {colors, font} from "../config";
 import Toast from 'react-native-easy-toast';
 import {Dropdown} from 'react-native-material-dropdown';
-import {getLanguages} from "../store/actions/lock-ups";
+import {getLanguages, loadDefaultLanguage} from "../store/actions/lock-ups";
 
 class SettingsScreen extends Component {
 
@@ -28,7 +28,6 @@ class SettingsScreen extends Component {
 
     constructor(props) {
         super(props);
-        __.locale = 'ar'
         this.state = {
             hasError: false,
             controls: {
@@ -79,8 +78,19 @@ class SettingsScreen extends Component {
             }
         };
         this.props.onGetLanguages();
+        this.props.onGetCurrentLanguage().then(()=>{
+            console.log('this.props.language; ==>' , this.props.language)
+            __.locale = this.props.language;
+        })
     }
-
+    /*componentWillReceiveProps(nextProps) {
+        if (nextProps.language !== this.props.language) {
+            this.props.onGetCurrentLanguage().then(()=>{
+                console.log('this.props.language; ==>' , this.props.language);
+                Expo.Util.reload();
+            })
+        }
+    }*/
     onChangeTextHandler = (key, value) => {
         let connectedValue = {};
         if (this.state.controls[key].validationRules.equalTo) {
@@ -470,6 +480,7 @@ const mapStateToProps = state => {
         currentUser: state.user.user,
         isLoading: state.ui.isLoading,
         languages: state.lockUps.languages,
+        language: state.lockUps.language
     };
 };
 
@@ -479,6 +490,7 @@ const mapDispatchToProps = dispatch => {
         onAuthLogout: () => dispatch(authLogout()),
         onGetLanguages: () => dispatch(getLanguages()),
         onChangePassword: (authData) => dispatch(changePassword(authData)),
+        onGetCurrentLanguage: ()=> dispatch(loadDefaultLanguage())
     };
 };
 

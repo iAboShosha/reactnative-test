@@ -15,10 +15,12 @@ export default class App extends React.Component {
     state = {
         isLoadingComplete: false,
     };
+
     constructor(props) {
-        super(props)
+        super(props);
         this.setupI18n()
     }
+
     render() {
         if (!this.state.isLoadingComplete && !this.props['skipLoadingScreen']) {
             return (
@@ -68,8 +70,8 @@ export default class App extends React.Component {
         this.setState({isLoadingComplete: true});
     };
     setupI18n = () => {
-        I18n.fallbacks = true
-        I18n.translations = Languages
+        I18n.fallbacks = true;
+        I18n.translations = Languages;
         global.__ = I18n
     }
 }

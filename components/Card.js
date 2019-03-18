@@ -9,7 +9,7 @@ class Card extends React.Component {
                 <Image
                     resizeMode={'contain'}
                     style={styles.imageStyle}
-                    source={{uri: this.props.data.urls.full}}
+                    source={{uri: this.props.data.urls.regular}}
                 />
                 <View style={{alignItems: 'center'}}>
                     <Text style={styles.brand}> {this.props.data.user.name}  </Text>

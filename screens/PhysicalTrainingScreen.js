@@ -39,7 +39,7 @@ class PhysicalTrainingScreen extends React.Component {
             <ScrollView style={styles.container}>
                 <Image
                     resizeMode={'contain'}
-                    source={{uri: this.state.physicalTraining.urls.full}}
+                    source={{uri: this.state.physicalTraining.urls.regular}}
                 />
                 <Text>{this.state.physicalTraining.user.username}</Text>
                 <Text>{this.state.physicalTraining.user.portfolio_url}</Text>

@@ -1,11 +1,19 @@
 
-import {ALL_COUNTRIES, ALL_CITIES, LANGUAGES, GET_PAYMENT_METHODS ,GET_DELIVERY_METHODS} from  "../actions/actionTypes";
+import {
+    ALL_COUNTRIES,
+    ALL_CITIES,
+    LANGUAGES,
+    GET_PAYMENT_METHODS,
+    GET_DELIVERY_METHODS,
+    SET_LANGUAGE
+} from "../actions/actionTypes";
 const initialState = {
     countries :[],
     cities :[],
     languages :[],
     paymentMethods:[],
-    deliveryMethods:[]
+    deliveryMethods:[],
+    language:'ar'
 };
 function reducer(state = initialState, action) {
     switch (action.type) {
@@ -28,12 +36,17 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 paymentMethods: action.paymentMethods
-            }
+            };
         case GET_DELIVERY_METHODS:
             return {
                 ...state,
                 deliveryMethods: action.deliveryMethods
-            }
+            };
+        case SET_LANGUAGE:
+            return {
+                ...state,
+                language: action.language
+            };
        default:
             return state;
     }

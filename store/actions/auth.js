@@ -7,6 +7,7 @@ import {
     USER_LOGGED_OUT,
 } from "./actionTypes";
 import {uiStartLoading, uiStopLoading, getUser} from "./index";
+import {saveLanguage} from "./lock-ups";
 
 
 export const authSignIn = (authData) => {

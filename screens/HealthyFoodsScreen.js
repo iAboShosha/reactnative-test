@@ -31,7 +31,7 @@ class HealthyFoodsScreen extends React.Component {
     _renderItem = ({item}) => {
         return (
             <Image style={styles.imageStyle}
-                   source={!!item.urls.full ? {uri: item.urls.full} : require('../assets/images/splash.png')}
+                   source={!!item.urls.regular ? {uri: item.urls.regular} : require('../assets/images/splash.png')}
             />
         );
     };

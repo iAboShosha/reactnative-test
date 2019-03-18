@@ -4,6 +4,7 @@ import {
     SAVE_NEW_PASSWORD
 } from "./actionTypes";
 import {authGetToken, uiStartLoading, uiStopLoading, authLogout} from "./index";
+import {saveLanguage} from "./lock-ups";
 
 export const getUser = (id) => {
     return (dispatch, getState) => {
@@ -17,7 +18,7 @@ export const getUser = (id) => {
                                 name: 'Name for Test',
                                 email: 'user@physicalTraining.com',
                                 avatar: 'https://s3-eu-west-1.amazonaws.com/fittingroom/1_objects_25.png',
-                                languageId: 'en-US',
+                                languageId: 'ar',
                             })
                         } else {
                             resolve(getState().user.user)
@@ -78,6 +79,7 @@ export const updateUser = user => {
                 dispatch(uiStopLoading());
                 if (token) {
                     dispatch(updateCurrentUser(user));
+                    dispatch(saveLanguage(user.languageId))
                 } else {
                     alert('حدث خطأ بالإتصال بالإنترنت')
                 }
