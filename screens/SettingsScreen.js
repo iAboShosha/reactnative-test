@@ -18,6 +18,17 @@ import {colors, font} from "../config";
 import Toast from 'react-native-easy-toast';
 import {Dropdown} from 'react-native-material-dropdown';
 import {getLanguages} from "../store/actions/lock-ups";
+// import { Localization } from 'expo';
+// import * as Localization from 'expo-localization';
+// import i18n from 'i18n-js';
+/*const en = {
+    foo: 'Foo',
+    bar: 'Bar {{someValue}}',
+};
+const ar = {
+    foo: 'como telle fous',
+    bar: 'chatouiller {{someValue}}',
+};*/
 
 class SettingsScreen extends Component {
 
@@ -28,6 +39,9 @@ class SettingsScreen extends Component {
 
     constructor(props) {
         super(props);
+        /*i18n.fallbacks = true;
+        i18n.translations = { ar, en };
+        i18n.locale = Localization.locale;*/
         this.state = {
             hasError: false,
             controls: {
@@ -207,6 +221,9 @@ class SettingsScreen extends Component {
                 <ScrollView
                     style={{width: "100%"}}
                     contentContainerStyle={styles.scrollView}>
+                    <Text>
+                        {i18n.t('foo')} {i18n.t('bar', { someValue: Date.now() })}
+                    </Text>
                     <View style={styles.titleContainer}>
                         <Text
                             style={[styles.title, this.state.hasError && !this.state.controls.userName.valid ? {color: colors.error} : {}]}>

@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 
 class Card extends React.Component {
     render() {
-        console.log('this.props.data ==> ', this.props.data)
         return (
             <TouchableOpacity onPress={this.props.openPhysicalTrainingItem} style={styles.container}>
                 <Image
@@ -15,8 +14,8 @@ class Card extends React.Component {
                 <View style={{alignItems: 'center'}}>
                     <Text style={styles.brand}> {this.props.data.user.name}  </Text>
                     <View style={{flexDirection: 'row'}}>
-                        <Text style={styles.price}> $ {this.props.data.user.twitter_username}  </Text>
-                        <Text style={styles.discount}> $ {this.props.data.user.instagram_username}  </Text>
+                        <Text style={styles.username}> {this.props.data.user.twitter_username}  </Text>
+                        <Text style={styles.instaname}> {this.props.data.user.instagram_username}  </Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -47,7 +46,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     imageStyle: {
-        width: 125,
+        width: '100%',
         height: 100,
         paddingBottom: 5,
         alignSelf: 'center',
@@ -60,18 +59,15 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         fontFamily: 'Cairo-Regular'
     },
-    price: {
-        color: '#656589',
+    username: {
         fontSize: 10,
         textAlign: 'center',
         //marginTop: 25,
         marginLeft: 5,
-        fontFamily: 'Cairo-Regular',
-        textDecorationLine: 'line-through'
+        fontFamily: 'Cairo-Regular'
 
     },
-    discount: {
-        color: 'red',
+    instaname: {
         fontSize: 12,
         textAlign: 'center',
         marginTop: -2,

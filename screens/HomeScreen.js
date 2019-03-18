@@ -28,7 +28,6 @@ class HomeScreen extends React.Component {
     };
 
     _renderItem = ({item, index}, parallaxProps) => {
-        console.log('ssssss22222222')
         return (
             <Card
                 openPhysicalTrainingItem={() => this.openPhysicalTrainingDetails(item)}
@@ -219,7 +218,13 @@ const styles = StyleSheet.create({
         //marginRight :60,
         marginLeft: 5,
         fontFamily: 'Cairo-Regular'
-    }
+    },
+    listContainer: {
+        width: '100%',
+        paddingHorizontal: 20,
+        paddingTop: 10,
+        marginBottom: 70,
+    },
 });
 
 const mapStateToProps = state => {
