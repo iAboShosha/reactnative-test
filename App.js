@@ -2,8 +2,10 @@ import React from 'react';
 import {AppRegistry, Platform, StatusBar, StyleSheet, View} from 'react-native';
 import {AppLoading, Font, Icon} from 'expo';
 import {AppNavigator} from './navigation/AppNavigator';
+import {Languages} from '@common'
 import {Provider} from "react-redux";
 import configureStore from "./store/configureStore";
+import I18n from 'i18n-js';
 
 if (typeof GLOBAL.self === "undefined") {
     GLOBAL.self = GLOBAL;
@@ -13,7 +15,10 @@ export default class App extends React.Component {
     state = {
         isLoadingComplete: false,
     };
-
+    constructor(props) {
+        super(props)
+        this.setupI18n()
+    }
     render() {
         if (!this.state.isLoadingComplete && !this.props['skipLoadingScreen']) {
             return (
@@ -62,6 +67,11 @@ export default class App extends React.Component {
     _handleFinishLoading = () => {
         this.setState({isLoadingComplete: true});
     };
+    setupI18n = () => {
+        I18n.fallbacks = true
+        I18n.translations = Languages
+        global.__ = I18n
+    }
 }
 
 const styles = StyleSheet.create({
