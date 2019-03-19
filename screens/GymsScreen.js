@@ -7,7 +7,7 @@ class GymsScreen extends React.Component {
 
 
     static navigationOptions = ({}) => ({
-        title: 'GYMs',
+        title: __.t('GYMs'),
         headerTitleStyle: {width: '85%', textAlign: 'center', alignSelf: 'center', fontWeight: 'normal'}
     });
 
@@ -26,7 +26,7 @@ class GymsScreen extends React.Component {
                 justifyContent: 'center',
                 backgroundColor: '#fff'
             }}>
-                <Text style={styles.noData}>Not Available Now</Text>
+                <Text style={styles.noData}>{__.t('Not Available Now')}</Text>
             </View>
         );
 

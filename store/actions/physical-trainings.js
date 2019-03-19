@@ -30,7 +30,7 @@ export const getPhysicalTrainings = () => {
                         dispatch(authLogout());
                     } else {
                         if (parsedRes.error.message === 'Network request failed') {
-                            alert('حدث خطأ بالإتصال بالإنترنت')
+                            alert(__.t('internet error'))
                         }
                     }
                 } else {
@@ -42,7 +42,7 @@ export const getPhysicalTrainings = () => {
             .catch(err => {
                 dispatch(uiStopLoading());
                 if (err.message === 'Network request failed') {
-                    alert('حدث خطأ بالإتصال بالإنترنت')
+                    alert(__.t('internet error'))
                 }
                 console.log(err.toString());
             });

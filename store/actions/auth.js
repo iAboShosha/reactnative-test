@@ -7,8 +7,6 @@ import {
     USER_LOGGED_OUT,
 } from "./actionTypes";
 import {uiStartLoading, uiStopLoading, getUser} from "./index";
-import {saveLanguage} from "./lock-ups";
-
 
 export const authSignIn = (authData) => {
     return (dispatch, getState) => {
@@ -37,7 +35,7 @@ export const authSignIn = (authData) => {
                     resolve()
                 })
             } else {
-                alert("خطأ بالبريد الإلكتروني أو بكلمة المرور");
+                alert(__.t("email or password is invalid"));
                 dispatch(uiStopLoading());
                 reject()
             }

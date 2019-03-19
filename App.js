@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRegistry, Platform, StatusBar, StyleSheet, View} from 'react-native';
+import {AppRegistry, AsyncStorage, Platform, StatusBar, StyleSheet, View} from 'react-native';
 import {AppLoading, Font, Icon} from 'expo';
 import {AppNavigator} from './navigation/AppNavigator';
 import {Languages} from '@common'
@@ -73,6 +73,9 @@ export default class App extends React.Component {
         I18n.fallbacks = true;
         I18n.translations = Languages;
         global.__ = I18n
+        AsyncStorage.getItem("ap:language").then((language) => {
+            global.__.locale = language || 'ar';
+        })
     }
 }
 

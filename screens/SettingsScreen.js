@@ -17,14 +17,14 @@ import {updateUser, authLogout, changePassword} from "../store/actions";
 import {colors, font} from "../config";
 import Toast from 'react-native-easy-toast';
 import {Dropdown} from 'react-native-material-dropdown';
-import {getLanguages, loadDefaultLanguage} from "../store/actions/lock-ups";
+import {getLanguages} from "../store/actions/lock-ups";
 
 class SettingsScreen extends Component {
-
     static navigationOptions = ({}) => ({
-        title: 'Settings',
+        title: __.t('settings'),
         headerTitleStyle: {width: '100%', textAlign: 'center', alignSelf: 'center', fontWeight: 'normal'}
     });
+
 
     constructor(props) {
         super(props);
@@ -78,11 +78,8 @@ class SettingsScreen extends Component {
             }
         };
         this.props.onGetLanguages();
-        this.props.onGetCurrentLanguage().then(()=>{
-            console.log('this.props.language; ==>' , this.props.language)
-            __.locale = this.props.language;
-        })
     }
+
     /*componentWillReceiveProps(nextProps) {
         if (nextProps.language !== this.props.language) {
             this.props.onGetCurrentLanguage().then(()=>{
@@ -91,6 +88,7 @@ class SettingsScreen extends Component {
             })
         }
     }*/
+
     onChangeTextHandler = (key, value) => {
         let connectedValue = {};
         if (this.state.controls[key].validationRules.equalTo) {
@@ -132,6 +130,7 @@ class SettingsScreen extends Component {
             this.setState({hasError: true});
         } else {
             this.setState({hasError: false});
+            __.locale = this.state.controls.language.value;
             const newData = {
                 name: this.state.controls.userName.value,
                 email: this.state.controls.email.value,
@@ -165,7 +164,7 @@ class SettingsScreen extends Component {
                 this.props.onChangePassword(authData);
             }
             this.props.onUpdateUser(newData).then(() => {
-                this.refs.toast.show('تم تعديل حسابك بنجاح', 500, () => {
+                this.refs.toast.show(__.t('settings-updated'), 500, () => {
                     this.props.navigation.navigate('Home');
                 });
 
@@ -192,7 +191,7 @@ class SettingsScreen extends Component {
                         alignSelf: 'center',
                         textAlign: 'center', color: colors.background,
                         fontFamily: 'Cairo-Regular'
-                    }}>Save</Text>
+                    }}>{__.t('save')}</Text>
                 </TouchableOpacity>
             </View>);
         if (this.props.isLoading) {
@@ -218,13 +217,10 @@ class SettingsScreen extends Component {
                 <ScrollView
                     style={{width: "100%"}}
                     contentContainerStyle={styles.scrollView}>
-                    <Text>
-                        {__.t('Submit')}
-                    </Text>
                     <View style={styles.titleContainer}>
                         <Text
                             style={[styles.title, this.state.hasError && !this.state.controls.userName.valid ? {color: colors.error} : {}]}>
-                            Username</Text>
+                            {__.t('username')}</Text>
                     </View>
                     <View style={styles.roundContainer}>
                         <TextInput
@@ -232,7 +228,7 @@ class SettingsScreen extends Component {
                                 fontSize: 16, color: colors.primary_font, textAlign: 'left',
                                 fontFamily: font.fontFamily
                             }}
-                            placeholder="username"
+                            placeholder={__.t('username')}
                             placeholderTextColor={colors.secondary_font}
                             value={this.state.controls.userName.value}
                             onChangeText={text => this.onChangeTextHandler("userName", text)}
@@ -243,12 +239,12 @@ class SettingsScreen extends Component {
                         <Text style={{
                             color: colors.error, textAlign: 'left', width: '90%',
                             fontFamily: font.fontFamily
-                        }}> userName is required </Text>
+                        }}> __.t('username-required')</Text>
                     )}
                     <View style={styles.titleContainer}>
                         <Text
                             style={[styles.title, this.state.hasError && !this.state.controls.email.valid ? {color: colors.error} : {}]}>
-                            Email</Text>
+                            {__.t('email')}</Text>
                     </View>
                     <View style={styles.roundContainer}>
                         <TextInput
@@ -256,7 +252,7 @@ class SettingsScreen extends Component {
                                 fontSize: 16, color: colors.primary_font, textAlign: 'left',
                                 fontFamily: font.fontFamily
                             }}
-                            placeholder=" Email"
+                            placeholder={__.t('username')}
                             placeholderTextColor={colors.secondary_font}
                             value={this.state.controls.email.value}
                             onChangeText={text => this.onChangeTextHandler("email", text)}
@@ -268,7 +264,7 @@ class SettingsScreen extends Component {
                     <View style={styles.titleContainer}>
                         <Text
                             style={[styles.title, this.state.hasError && !this.state.controls.city.valid ? {color: colors.error} : {}]}>
-                            Language
+                            {__.t('language')}
                         </Text>
                     </View>
                     <View style={styles.roundContainer}>
@@ -293,7 +289,7 @@ class SettingsScreen extends Component {
                     <View style={styles.titleContainer}>
                         <Text
                             style={[styles.title, this.state.hasError && !this.state.controls.password.valid ? {color: colors.error} : {}]}>
-                            Current Password </Text>
+                            {__.t('current-password')} </Text>
                     </View>
                     <View style={styles.roundContainer}>
                         <TextInput
@@ -310,7 +306,7 @@ class SettingsScreen extends Component {
                     <View style={styles.titleContainer}>
                         <Text
                             style={[styles.title, this.state.hasError && !this.state.controls.newPassword.valid ? {color: colors.error} : {}]}>
-                            New Password </Text>
+                            {__.t('new-password')} </Text>
                     </View>
                     <View style={styles.roundContainer}>
                         <TextInput
@@ -336,17 +332,18 @@ class SettingsScreen extends Component {
                             borderRadius: 10
                         }} onPress={() =>
                             Alert.alert(
-                                'Log out',
-                                'Are you sure to log out?',
+                                __.t('logout'),
+                                __.t('logout-confirm'),
                                 [
                                     {
-                                        text: 'cancel',
+                                        text: __.t('logout-confirm-cancel'),
                                         onPress: () => {
                                         },
                                         style: 'cancel'
                                     },
                                     {
-                                        text: 'confirm', onPress: () => {
+                                        text: __.t('logout-confirm-confirm'),
+                                        onPress: () => {
                                             this.props.onAuthLogout()
                                         }
                                     },
@@ -358,7 +355,7 @@ class SettingsScreen extends Component {
                                 alignSelf: 'center',
                                 textAlign: 'center', color: colors.background,
                                 fontFamily: 'Cairo-Regular'
-                            }}>Log out</Text>
+                            }}>{__.t('logout')}</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
@@ -490,7 +487,6 @@ const mapDispatchToProps = dispatch => {
         onAuthLogout: () => dispatch(authLogout()),
         onGetLanguages: () => dispatch(getLanguages()),
         onChangePassword: (authData) => dispatch(changePassword(authData)),
-        onGetCurrentLanguage: ()=> dispatch(loadDefaultLanguage())
     };
 };
 

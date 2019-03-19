@@ -3,19 +3,18 @@ import {FOODS_LIMIT_LIST, INCREMENT_PAGE, PAGE_CHANGED, RESET_PAGE} from "./acti
 
 export const getHealthyFoods = () => {
     return (dispatch, getState) => {
-        console.log('sssssssssssssss')
         dispatch(uiStartLoading());
         dispatch(authGetToken());
         return fetch(
-            'https://api.unsplash.com/photos/?client_id=7320320b1576fafcbc37b052a76efb5da6eae1c98eacf271cbfd51236bd5c46d&page='+
-            getState().healthyFoods.page+'&per_page=10', {
-            method: 'get',
-            headers: new Headers({
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }),
+            'https://api.unsplash.com/photos/?client_id=7320320b1576fafcbc37b052a76efb5da6eae1c98eacf271cbfd51236bd5c46d&page=' +
+            getState().healthyFoods.page + '&per_page=10', {
+                method: 'get',
+                headers: new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }),
 
-        })
+            })
             .then(res => res.json())
             .then(parsedRes => {
                 dispatch(uiStopLoading());
@@ -24,7 +23,7 @@ export const getHealthyFoods = () => {
                         dispatch(authLogout());
                     } else {
                         if (parsedRes.error.message === 'Network request failed') {
-                            alert('حدث خطأ بالإتصال بالإنترنت')
+                            alert(__.t('internet error'))
                         }
                     }
                 } else {
@@ -36,7 +35,7 @@ export const getHealthyFoods = () => {
             .catch(err => {
                 dispatch(uiStopLoading());
                 if (err.message === 'Network request failed') {
-                    alert('حدث خطأ بالإتصال بالإنترنت')
+                    alert(__.t('internet error'))
                 }
                 console.log(err.toString());
             });
@@ -51,10 +50,10 @@ export const updateHealthyFoodsList = foods => {
     }
 };
 
-export const pageChanged =(isChanged) =>{
+export const pageChanged = (isChanged) => {
     return {
         type: PAGE_CHANGED,
-        isPageChanged : isChanged
+        isPageChanged: isChanged
     }
 };
 export const incrementPage = () => {
@@ -62,7 +61,7 @@ export const incrementPage = () => {
         type: INCREMENT_PAGE,
     }
 };
-export const resetPage = () =>{
+export const resetPage = () => {
     return {
         type: RESET_PAGE
     }

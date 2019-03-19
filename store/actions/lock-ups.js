@@ -44,7 +44,7 @@ export const getLanguages = () => {
                         dispatch(authLogout());
                     } else {
                         if (parsedRes.error.message === 'Network request failed') {
-                            alert('حدث خطأ بالإتصال بالإنترنت')
+                            alert(__.t('internet error'))
                         }
                     }
                 } else {
@@ -53,7 +53,7 @@ export const getLanguages = () => {
             })
             .catch(err => {
                 if (err.message === 'Network request failed') {
-                    alert('حدث خطأ بالإتصال بالإنترنت')
+                    alert(__.t('internet error'))
                 }
                 console.log(err.toString());
             });
@@ -71,6 +71,7 @@ export const saveLanguage = (language) => {
 export const loadDefaultLanguage = () => {
     return (dispatch) => {
         return AsyncStorage.getItem("ap:language").then((language) => {
+            __.locale = language;
             dispatch(setCurrentLanguage(language));
         });
     }

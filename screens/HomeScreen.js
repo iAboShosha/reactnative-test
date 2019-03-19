@@ -11,7 +11,7 @@ import {getPhysicalTrainings} from "../store/actions/physical-trainings";
 
 class HomeScreen extends React.Component {
     static navigationOptions = ({}) => ({
-        headerTitle: 'Physical training',
+        headerTitle: __.t('Physical training'),
         headerTitleStyle: {width: '100%', textAlign: 'center', alignSelf: 'center', fontWeight: 'normal'}
     });
 
@@ -57,7 +57,7 @@ class HomeScreen extends React.Component {
                 justifyContent: 'center',
                 backgroundColor: '#fff'
             }}>
-                <Text style={styles.noData}>Not Available Now</Text>
+                <Text style={styles.noData}>{__.t('Not Available Now')}</Text>
             </View>
         );
 

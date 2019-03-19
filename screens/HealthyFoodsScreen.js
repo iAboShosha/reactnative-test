@@ -16,7 +16,7 @@ import {getHealthyFoods, resetPage} from "../store/actions/healthy-foods";
 
 class HealthyFoodsScreen extends React.Component {
     static navigationOptions = ({}) => ({
-        title: 'Healthy Foods',
+        title: __.t('Healthy Foods'),
         headerTitleStyle: {width: '85%', textAlign: 'center', alignSelf: 'center', fontWeight: 'normal'}
     });
 
@@ -54,7 +54,7 @@ class HealthyFoodsScreen extends React.Component {
                 justifyContent: 'center',
                 backgroundColor: '#fff'
             }}>
-                <Text style={styles.noData}>Not Available Now</Text>
+                <Text style={styles.noData}>{__.t('Not Available Now')}</Text>
             </View>
         );
 
@@ -84,20 +84,6 @@ class HealthyFoodsScreen extends React.Component {
 
         return (
             <View style={styles.container}>
-                <View style={{
-                    width: '84%', flexDirection: 'row', marginTop: 10,
-                    marginHorizontal: '8%', justifyContent: 'center', alignItems: 'center'
-                }}>
-                    <TextInput style={styles.roundContainer}
-                               placeholder="Search"
-                               placeholderTextColor={'#848484'}
-                               underlineColorAndroid='transparent'
-                               onChangeText={text => {
-                                   // this.props.onGetAllTypes(text)
-                                   // this.props.onGetAllCategories(text)
-                               }}
-                    />
-                </View>
                 <View style={{
                     height: '100%',
                     width: '100%',

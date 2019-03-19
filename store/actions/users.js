@@ -35,7 +35,7 @@ export const getUser = (id) => {
                         dispatch(authLogout());
                     } else {
                         if (parsedRes.error.message === 'Network request failed') {
-                            alert('حدث خطأ بالإتصال بالإنترنت')
+                            alert(__.t('internet error'))
                         }
                     }
                 } else {
@@ -47,7 +47,7 @@ export const getUser = (id) => {
             .catch(err => {
                 dispatch(uiStopLoading());
                 if (err.message === 'Network request failed') {
-                    alert('حدث خطأ بالإتصال بالإنترنت')
+                    alert(__.t('internet error'))
                 }
                 console.log(err.toString());
             });
@@ -63,10 +63,10 @@ export const changePassword = (authData) => {
                     if (getState().auth.credential.password === authData.password) {
                         dispatch({type: SAVE_NEW_PASSWORD, password: authData.newPassword})
                     } else {
-                        alert('كلمة السر غير صحيحة')
+                        alert(__.t('invalid password'))
                     }
                 } else {
-                    alert('حدث خطأ بالإتصال بالإنترنت')
+                    alert(__.t('internet error'))
                 }
             });
     };
@@ -81,13 +81,13 @@ export const updateUser = user => {
                     dispatch(updateCurrentUser(user));
                     dispatch(saveLanguage(user.languageId))
                 } else {
-                    alert('حدث خطأ بالإتصال بالإنترنت')
+                    alert(__.t('internet error'))
                 }
             })
             .catch(err => {
                 dispatch(uiStopLoading());
                 if (err.message === 'Network request failed') {
-                    alert('حدث خطأ بالإتصال بالإنترنت')
+                    alert(__.t('internet error'))
                 }
                 console.log(err.toString());
             });

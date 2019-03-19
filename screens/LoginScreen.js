@@ -115,7 +115,7 @@ class LoginScreen extends Component {
                     backgroundColor: '#fff'
                 }}>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.titlelg}>Sign in</Text>
+                        <Text style={styles.titlelg}>{__.t('Sign in')}</Text>
                     </View>
                     <View style={styles.titleContainer}>
                     </View>
@@ -123,7 +123,7 @@ class LoginScreen extends Component {
                         <TextInput
                             style={styles.textInput}
                             value={this.state.controls.email.value}
-                            placeholder="Email"
+                            placeholder={__.t('email')}
                             placeholderTextColor={colors.secondary_font}
                             keyboardType="email-address"
                             onChangeText={text => this.onChangeTextHandler("email", text)}
@@ -131,13 +131,13 @@ class LoginScreen extends Component {
                         />
                     </View>
                     {this.state.hasError && !this.state.controls.email.valid && (
-                        <Text style={styles.invalidData}>Email required</Text>
+                        <Text style={styles.invalidData}>{__.t('email-required')}</Text>
                     )}
                     <View style={styles.inputContainer}>
                         <TextInput
                             style={styles.textInput}
                             value={this.state.controls.password.value}
-                            placeholder="Password"
+                            placeholder={__.t('password')}
                             placeholderTextColor={colors.secondary_font}
                             secureTextEntry={true}
                             onChangeText={text => this.onChangeTextHandler("password", text)}
@@ -145,27 +145,8 @@ class LoginScreen extends Component {
                         />
                     </View>
                     {this.state.hasError && !this.state.controls.password.valid && (
-                        <Text style={styles.invalidData}>Password Required</Text>
+                        <Text style={styles.invalidData}>{__.t('password-required')}</Text>
                     )}
-
-                    {/*<View style={{width: "100%", marginTop: 20, marginBottom: 20, alignItems: "center"}}>
-                        <TouchableOpacity
-                            style={{
-                                borderBottomWidth: 2,
-                                borderBottomColor: "#ff5050",
-                            }}
-                            onPress={() => {
-                                this.props.navigation.navigate("ForgetPasswordScreen")
-                            }}>
-                            <Text style={{
-                                fontSize: 13,
-                                color: "#ff5050",
-                                fontWeight: "400",
-                                paddingBottom: 0
-                            }}>
-                                FORGET PASSWORD ?</Text>
-                        </TouchableOpacity>
-                    </View>*/}
                 </ScrollView>
                 {submit}
             </KeyboardAvoidingView>
